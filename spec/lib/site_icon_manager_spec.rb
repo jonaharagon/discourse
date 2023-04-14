@@ -29,6 +29,11 @@ RSpec.describe SiteIconManager do
     expect(manifest.width).to eq(512)
     expect(manifest.height).to eq(512)
 
+    maskable = SiteIconManager.manifest_maskable_icon
+    expect(maskable.upload_id).to eq(upload.id)
+    expect(maskable.width).to eq(512)
+    expect(maskable.height).to eq(512)
+
     # Always resizes to 32x32
     favicon = SiteIconManager.favicon
     expect(favicon.upload_id).to eq(upload.id)
@@ -42,5 +47,7 @@ RSpec.describe SiteIconManager do
     # Site Setting integration
     expect(SiteSetting.manifest_icon).to eq(nil)
     expect(SiteSetting.site_manifest_icon_url).to eq(GlobalPathInstance.full_cdn_url(manifest.url))
+    expect(SiteSetting.manifest_maskable_icon).to eq(nil)
+    expect(SiteSetting.site_manifest_maskable_icon_url).to eq(GlobalPathInstance.full_cdn_url(maskable.url))
   end
 end

@@ -91,9 +91,18 @@ class MetadataController < ApplicationController
         sizes: "512x512",
         type: MiniMime.lookup_by_filename(logo)&.content_type || "image/png",
       }
-      manifest[:icons] << icon_entry.dup
-      icon_entry[:purpose] = "maskable"
       manifest[:icons] << icon_entry
+    end
+
+    maskable_logo = SiteSetting.site_manifest_maskable_icon_url
+    if maskable_logo
+      maskable_icon_entry = {
+        src: UrlHelper.absolute(maskable_logo),
+        sizes: "512x512",
+        type: MiniMime.lookup_by_filename(maskable_logo)&.content_type || "image/png",
+        purpose: "maskable",
+      }
+      manifest[:icons] << maskable_icon_entry
     end
 
     SiteSetting

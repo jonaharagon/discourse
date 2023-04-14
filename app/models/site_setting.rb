@@ -229,6 +229,7 @@ class SiteSetting < ActiveRecord::Base
     mobile_logo_dark
     large_icon
     manifest_icon
+    manifest_maskable_icon
     favicon
     apple_touch_icon
     twitter_summary_large_image

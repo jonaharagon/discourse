@@ -93,6 +93,9 @@ branding:
   manifest_icon:
     default: ""
     type: upload
+  manifest_maskable_icon:
+    default: ""
+    type: upload
   manifest_screenshots:
     type: list
     list_type: simple
